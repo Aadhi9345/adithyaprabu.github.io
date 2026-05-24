@@ -1155,44 +1155,113 @@
 
     /* ─── CERTIFICATES ───────────────────────── */
     #certificates {
-      background: var(--bg2)
+      background: var(--bg2);
+      overflow: hidden;
     }
 
-    .certs-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 22px
+    /* Marquee wrapper — full width, hides overflow, fade edges */
+    .certs-marquee {
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+      padding: 10px 0 30px;
     }
 
+    /* Fade-out edges with gradient mask */
+    .certs-marquee::before,
+    .certs-marquee::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 100px;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .certs-marquee::before {
+      left: 0;
+      background: linear-gradient(to right, var(--bg2), transparent);
+    }
+    .certs-marquee::after {
+      right: 0;
+      background: linear-gradient(to left, var(--bg2), transparent);
+    }
+
+    /* The scrolling track — 10 cards total (5 real + 5 cloned) */
+    .certs-track {
+      display: flex;
+      gap: 28px;
+      width: max-content;
+      animation: certScroll 25s linear infinite;
+    }
+
+    .certs-track:hover {
+      animation-play-state: paused;
+    }
+
+    @keyframes certScroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* Each certificate card in the marquee */
+    .certs-track .cc {
+      width: 310px;
+      flex-shrink: 0;
+    }
     .cc {
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: var(--rl);
       overflow: hidden;
-      transition: transform .3s var(--ease), box-shadow .3s, border-color .3s;
-      animation: floatCard 5s ease-in-out infinite
+      position: relative;
+      transition: transform .4s var(--ease), box-shadow .4s, border-color .4s;
+      animation: floatCard 5s ease-in-out infinite;
     }
 
-    .cc:nth-child(2) {
-      animation-delay: .8s
-    }
+    .certs-track .cc:nth-child(2)  { animation-delay: 0.5s; }
+    .certs-track .cc:nth-child(3)  { animation-delay: 1.0s; }
+    .certs-track .cc:nth-child(4)  { animation-delay: 1.5s; }
+    .certs-track .cc:nth-child(5)  { animation-delay: 2.0s; }
+    .certs-track .cc:nth-child(7)  { animation-delay: 0.5s; }
+    .certs-track .cc:nth-child(8)  { animation-delay: 1.0s; }
+    .certs-track .cc:nth-child(9)  { animation-delay: 1.5s; }
+    .certs-track .cc:nth-child(10) { animation-delay: 2.0s; }
 
     @keyframes floatCard {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-8px); }
+    }
 
-      0%,
-      100% {
-        transform: translateY(0)
-      }
+    /* Shimmer sweep overlay */
+    .cc::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        120deg,
+        transparent 30%,
+        rgba(0, 212, 255, 0.06) 50%,
+        transparent 70%
+      );
+      z-index: 3;
+      pointer-events: none;
+      transition: left 0.6s ease;
+    }
 
-      50% {
-        transform: translateY(-7px)
-      }
+    .cc:hover::before {
+      left: 100%;
     }
 
     .cc:hover {
-      transform: translateY(-10px) scale(1.02) !important;
-      box-shadow: 0 32px 64px rgba(0, 0, 0, .4);
-      border-color: var(--border2)
+      transform: translateY(-12px) scale(1.03) !important;
+      box-shadow:
+        0 20px 50px rgba(0, 0, 0, .35),
+        0 0 30px rgba(0, 212, 255, .12);
+      border-color: rgba(0, 212, 255, .3);
     }
 
     .cc-thumb {
@@ -1673,7 +1742,6 @@
         align-items: flex-start
       }
 
-      .certs-grid,
       .projects-grid {
         grid-template-columns: 1fr
       }
@@ -2147,4 +2215,356 @@
       .cursor-ring {
         display: none !important;
       }
+    }
+
+    /* ═══════════════════════════════════════════
+       PREMIUM EFFECTS & ANIMATIONS
+       ═══════════════════════════════════════════ */
+
+    /* ─── NAV GLOW BORDER ───────────────────── */
+    nav::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+      opacity: 0;
+      transition: opacity .4s;
+    }
+    nav.scrolled::after {
+      opacity: .5;
+    }
+
+    /* ─── GRADIENT TEXT SHIMMER (Hero Name) ──── */
+    .h-title .name {
+      background: linear-gradient(
+        90deg,
+        var(--text) 0%,
+        var(--cyan) 30%,
+        var(--cyan2) 50%,
+        var(--cyan) 70%,
+        var(--text) 100%
+      );
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: textShimmer 4s linear infinite;
+    }
+
+    @keyframes textShimmer {
+      0%   { background-position: 0% center; }
+      100% { background-position: 200% center; }
+    }
+
+    /* ─── HERO PHOTO GLOW PULSE ─────────────── */
+    .h-photo-wrap {
+      animation: photoGlow 4s ease-in-out infinite;
+    }
+
+    @keyframes photoGlow {
+      0%, 100% {
+        box-shadow: 0 0 60px rgba(0, 212, 255, .08), 0 40px 80px rgba(0, 0, 0, .55);
+      }
+      50% {
+        box-shadow: 0 0 80px rgba(0, 212, 255, .18), 0 40px 80px rgba(0, 0, 0, .55);
+      }
+    }
+
+    /* ─── BUTTON SHINE SWEEP ────────────────── */
+    .btn-s, .btn-g {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-s::after, .btn-g::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(
+        120deg,
+        transparent 0%,
+        rgba(255, 255, 255, .25) 50%,
+        transparent 100%
+      );
+      transition: left .5s ease;
+    }
+
+    .btn-s:hover::after, .btn-g:hover::after {
+      left: 130%;
+    }
+
+    /* ─── SECTION TITLE UNDERLINE ANIMATION ──── */
+    .sec-title {
+      position: relative;
+      display: inline-block;
+    }
+
+    .sec-title::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 0;
+      height: 3px;
+      border-radius: 3px;
+      background: linear-gradient(90deg, var(--cyan), var(--cyan2));
+      transition: width .8s var(--ease);
+    }
+
+    .rv.in .sec-title::after,
+    .sec-title.in::after {
+      width: 60px;
+    }
+
+    .contact-title::after {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    /* ─── EYEBROW TAG GLOW ──────────────────── */
+    .eyebrow {
+      position: relative;
+      animation: eyebrowGlow 3s ease-in-out infinite;
+    }
+
+    @keyframes eyebrowGlow {
+      0%, 100% { text-shadow: none; }
+      50% { text-shadow: 0 0 12px rgba(0, 212, 255, .3); }
+    }
+
+    /* ─── ABOUT CARDS STAGGER SLIDE ─────────── */
+    .ac {
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity .6s ease, transform .6s var(--ease);
+    }
+
+    .ac-stack.in .ac { opacity: 1; transform: translateX(0); }
+    .ac-stack.in .ac:nth-child(1) { transition-delay: 0s; }
+    .ac-stack.in .ac:nth-child(2) { transition-delay: .12s; }
+    .ac-stack.in .ac:nth-child(3) { transition-delay: .24s; }
+    .ac-stack.in .ac:nth-child(4) { transition-delay: .36s; }
+
+    /* ─── SKILL RING GLOW ON HOVER ──────────── */
+    .sk:hover .sk-ring-fill {
+      filter: drop-shadow(0 0 10px rgba(0, 212, 255, .6));
+    }
+
+    .sk:hover .sk-ring-icon {
+      animation: iconBounce .4s ease;
+    }
+
+    @keyframes iconBounce {
+      0%   { transform: scale(1); }
+      50%  { transform: scale(1.25); }
+      100% { transform: scale(1); }
+    }
+
+    /* ─── ANIMATED DIVIDERS ─────────────────── */
+    .divider {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .divider::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0, 212, 255, .5), transparent);
+      animation: dividerSweep 4s linear infinite;
+    }
+
+    @keyframes dividerSweep {
+      0%   { left: -50%; }
+      100% { left: 150%; }
+    }
+
+    /* ─── PROJECT CARD SPOTLIGHT ─────────────── */
+    .pc {
+      position: relative;
+    }
+
+    .pc::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: var(--rl);
+      opacity: 0;
+      background: radial-gradient(
+        circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(0, 212, 255, .08) 0%,
+        transparent 60%
+      );
+      transition: opacity .3s;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .pc:hover::after {
+      opacity: 1;
+    }
+
+    /* ─── CONTACT BUTTON PULSE ──────────────── */
+    .c-email-btn {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .c-email-btn::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 100px;
+      background: linear-gradient(135deg, var(--cyan), var(--cyan2), var(--cyan));
+      background-size: 200% 200%;
+      animation: btnGradient 3s ease infinite;
+      z-index: -1;
+      opacity: .5;
+      filter: blur(8px);
+    }
+
+    @keyframes btnGradient {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* ─── CONTACT CARD BORDER GLOW ──────────── */
+    .ccard {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ccard::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 200%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+      animation: cardBorderSweep 3s linear infinite;
+    }
+
+    @keyframes cardBorderSweep {
+      0%   { left: -200%; }
+      100% { left: 100%; }
+    }
+
+    /* ─── TIMELINE DOT RIPPLE ──────────────── */
+    .tl-dot::after {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      border: 1px solid var(--cyan);
+      opacity: 0;
+      animation: dotRipple 2.5s ease-out infinite;
+    }
+
+    @keyframes dotRipple {
+      0%   { transform: scale(.5); opacity: .6; }
+      100% { transform: scale(2); opacity: 0; }
+    }
+
+    /* ─── TIMELINE LINE GLOW ───────────────── */
+    .tl-wrap::before {
+      animation: lineGlow 3s ease-in-out infinite;
+    }
+
+    @keyframes lineGlow {
+      0%, 100% { opacity: .3; }
+      50%      { opacity: .7; }
+    }
+
+    /* ─── FOOTER GRADIENT TOP LINE ─────────── */
+    footer {
+      position: relative;
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+      animation: dividerSweep 5s linear infinite;
+    }
+
+    /* ─── SMOOTH SCROLL PROGRESS GLOW ──────── */
+    #scrollBar {
+      box-shadow: 0 0 12px var(--cyan), 0 0 4px var(--cyan);
+    }
+
+    /* ─── CHIP TAG HOVER ANIMATION ─────────── */
+    .chip {
+      transition: all .3s var(--ease);
+    }
+
+    .chip:hover {
+      background: var(--cyan);
+      color: #000;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 14px rgba(0, 212, 255, .3);
+    }
+
+    /* ─── BACK TO TOP ROTATION ─────────────── */
+    #backTop {
+      transition: opacity .3s, transform .3s, box-shadow .3s, background .3s;
+    }
+
+    #backTop:hover {
+      animation: backTopSpin .5s ease;
+    }
+
+    @keyframes backTopSpin {
+      0%   { transform: translateY(-2px) rotate(0deg); }
+      100% { transform: translateY(-2px) rotate(360deg); }
+    }
+
+    /* ─── NAV LINK HOVER UNDERLINE ─────────── */
+    .nav-links a {
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: var(--cyan);
+      border-radius: 2px;
+      transition: width .3s var(--ease), left .3s var(--ease);
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+      left: 0;
+    }
+
+    /* ─── GLASSMORPHISM STAT CARDS ──────────── */
+    .h-stat {
+      transition: transform .3s var(--ease);
+    }
+
+    .h-stat:hover {
+      transform: translateY(-4px) !important;
+    }
+
+    .h-stat:hover .h-sn {
+      text-shadow: 0 0 20px rgba(0, 212, 255, .4);
     }
