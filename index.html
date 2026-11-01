@@ -4,8 +4,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>G. Adithyaprabu — Full Stack Developer</title>
+  <title>G. Adithyaprabu — AI Engineer | MLOps | Full Stack Developer</title>
   <link rel="icon" type="image/png" href="person-circle.svg" />
+
+  <!-- High-Priority Local Font Preload (Instant Zero-FOUT Load) -->
+  <link rel="preload" href="fonts/syne.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="fonts/dmsans.woff2" as="font" type="font/woff2" crossorigin />
+
+  <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -13,7 +19,6 @@
     rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     crossorigin="anonymous" />
-  <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="loading">
@@ -28,6 +33,17 @@
   <!-- BG CANVAS -->
   <canvas id="bgCanvas"></canvas>
 
+  <!-- ═══════════ PROJECT IMAGE FULLSCREEN MODAL ═══════════ -->
+  <div class="project-modal" id="projectModal" aria-hidden="true">
+    <div class="pm-wrapper">
+      <button class="pm-close" id="pmClose" aria-label="Close preview">&times;</button>
+      <div class="pm-img-box">
+        <img id="pmImage" src="" alt="Project Preview" />
+      </div>
+      <div class="pm-caption" id="pmCaption"></div>
+    </div>
+  </div>
+
   <!-- ═══════════ RESUME MODAL ═══════════ -->
   <div class="resume-modal" id="resumeModal">
     <div class="resume-content">
@@ -39,6 +55,9 @@
   <!-- ═══════════ PRELOADER ═══════════ -->
   <div id="preloader">
     <canvas id="rainCanvas"></canvas>
+    <div class="pre-watermark">
+      <img src="p2.png" alt="" aria-hidden="true" class="pre-watermark-img" />
+    </div>
     <div class="pre-glow"></div>
     <div class="pre-scan"></div>
     <div class="pre-c tl"></div>
@@ -60,7 +79,7 @@
     <div class="pre-nb">
       <div class="pre-gr">Welcome to my portfolio</div>
       <div class="pre-fn">G.<span>Adithyaprabu</span></div>
-      <div class="pre-rt2">Full Stack Developer &nbsp;·&nbsp; Web Designer</div>
+      <div class="pre-rt2">AI Engineer &nbsp;·&nbsp; MLOps &nbsp;·&nbsp; Full Stack Developer</div>
     </div>
 
     <div class="pre-st">
@@ -125,8 +144,8 @@
           <span class="role-typer"><span id="roleText"></span><span class="role-cursor"></span></span>
         </h1>
         <p class="h-desc">
-          CS student at J.J College Of Arts And Science Under Bharathidasan University (Class of 2026), passionate about crafting
-          interactive, user-friendly digital experiences.
+          MSc Artificial Intelligence &amp; Data Science student at Alagappa University, passionate about
+          AI Engineering, MLOps, Cloud Computing, and Full Stack Development.
         </p>
         <div class="h-btns">
           <button class="btn-s" id="viewResumeBtn">View Resume ↗</button>
@@ -137,7 +156,7 @@
         </div>
         <div class="h-stats">
           <div class="h-stat">
-            <div class="h-sn" data-target="7">0</div>
+            <div class="h-sn" data-target="10">0</div>
             <div class="h-sl">Technologies</div>
           </div>
           <div class="h-stat" style="padding-left:24px">
@@ -145,7 +164,7 @@
             <div class="h-sl">Certificates</div>
           </div>
           <div class="h-stat" style="padding-left:24px">
-            <div class="h-sn" data-target="2026">0</div>
+            <div class="h-sn" data-target="2028">0</div>
             <div class="h-sl">Graduating</div>
           </div>
         </div>
@@ -178,22 +197,17 @@
           <div class="eyebrow">Who I Am</div>
           <h2 class="sec-title">Crafting the Web,<br />One Line at a Time</h2>
           <div class="about-text">
-            <p>I'm <strong>G. Adithyaprabu</strong>, a Computer Science student at Bharathidasan University with a deep
-              passion for <strong>Full Stack Web Development</strong> and clean UI design. I enjoy creating interactive
-              and user-friendly websites, combining clean design with efficient functionality.</p>
-            <p>During my internships, I have worked with technologies like <strong>Figma, HTML, CSS, Bootstrap,
-                JavaScript</strong>, and <strong>PHP</strong> to build real-world projects, including eCommerce
-              platforms like <strong>GameZone</strong>. I am always eager to learn new tools, improve my skills, and
-              work on creative projects that make an impact.</p>
-            <p>My goal is to grow as a professional <strong>Full Stack Developer</strong>, delivering seamless web
-              experiences and expanding my portfolio with innovative projects.</p>
+            <p>I'm <strong>G. Adithyaprabu</strong>, currently pursuing <strong>MSc Artificial Intelligence &amp; Data Science</strong> at Alagappa University. My primary focus is on <strong>AI Engineering, MLOps, and Cloud Computing</strong>, with Full Stack Development as a strong complementary skill.</p>
+            <p>With a foundation in <strong>B.Sc. Computer Science</strong> from J.J College of Arts &amp; Science (Bharathidasan University), I've built real-world projects ranging from eCommerce platforms to music streaming apps using <strong>HTML, CSS, JavaScript, PHP, React, Next.js</strong>, and more. I also founded <strong>Adithyaprabu Digital Studio</strong>, a freelancing venture for premium web design.</p>
+            <p>My goal is to become a professional <strong>AI Engineer</strong>, building intelligent systems with scalable ML pipelines deployed on cloud infrastructure — while continuing to deliver exceptional full stack web experiences.</p>
           </div>
           <div class="chips">
-            <span class="chip">Figma</span>
+            <span class="chip">AI Engineering</span>
+            <span class="chip">MLOps</span>
+            <span class="chip">Cloud Computing</span>
             <span class="chip">Full Stack</span>
-            <span class="chip">eCommerce</span>
-            <span class="chip">UI Design</span>
-            <span class="chip">PHP Backend</span>
+            <span class="chip">Data Science</span>
+            <span class="chip">React / Next.js</span>
             <span class="chip">Open to Work</span>
           </div>
         </div>
@@ -204,32 +218,29 @@
             <div class="ac-ico">🎓</div>
             <div>
               <div class="ac-title">Education</div>
-              <div class="ac-txt">B.Sc. Computer Science ·J.J College Of Arts And Science Under Bharathidasan University · Class of 2026, with strong focus
-                on web technologies.</div>
+              <div class="ac-txt">MSc AI &amp; Data Science · Alagappa University (2026–2028). B.Sc. Computer Science · J.J College, Bharathidasan University (Class of 2026).</div>
             </div>
           </div>
           <div class="ac">
             <div class="ac-ico">💼</div>
             <div>
-              <div class="ac-title">Internship Experience</div>
-              <div class="ac-txt">Web Development intern at Hapitrend Media — built live eCommerce projects with real
-                industry exposure.</div>
+              <div class="ac-title">Internship &amp; Freelancing</div>
+              <div class="ac-txt">Web Dev intern at Hapitrend Media. Founded Adithyaprabu Digital Studio — a freelancing venture for premium web design &amp; development.</div>
             </div>
           </div>
           <div class="ac">
             <div class="ac-ico">⚡</div>
             <div>
               <div class="ac-title">What Drives Me</div>
-              <div class="ac-txt">Turning ideas into polished digital products — clean code, thoughtful UX, and
-                continuous learning keep me going every day.</div>
+              <div class="ac-txt">Building intelligent systems with AI/ML, deploying scalable pipelines on the cloud, and
+                crafting polished digital products with clean code and thoughtful UX.</div>
             </div>
           </div>
           <div class="ac">
             <div class="ac-ico">🎯</div>
             <div>
               <div class="ac-title">Goal</div>
-              <div class="ac-txt">Become a professional Full Stack Developer delivering seamless web experiences and an
-                impactful, innovative portfolio.</div>
+              <div class="ac-txt">Become a professional AI Engineer &amp; MLOps specialist, building production-grade ML systems on cloud infrastructure — with full stack skills to deliver end-to-end solutions.</div>
             </div>
           </div>
         </div>
@@ -248,8 +259,8 @@
           <div class="eyebrow">What I Know</div>
           <h2 class="sec-title" style="margin-bottom:0">Skills &amp; Technologies</h2>
         </div>
-        <p class="sec-sub" style="margin:0;max-width:300px">A toolkit built through internships, coursework, and
-          real-world projects.</p>
+        <p class="sec-sub" style="margin:0;max-width:300px">A toolkit built through academics, internships, freelancing, and
+          real-world AI &amp; web projects.</p>
       </div>
 
       <div class="skills-grid">
@@ -358,6 +369,45 @@
           <div class="sk-name">PostgreSQL</div>
           <div class="sk-pct">80%</div>
         </div>
+        <div class="sk rv tilt" style="--w:78%;--offset:41.4;transition-delay:.48s">
+          <div class="sk-ring-wrap">
+            <svg viewBox="0 0 64 64">
+              <circle class="sk-ring-track" cx="32" cy="32" r="30" />
+              <circle class="sk-ring-fill" cx="32" cy="32" r="30" />
+            </svg>
+            <div class="sk-ring-icon"><img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="Python"
+                style="width:24px;height:24px;"></div>
+          </div>
+          <div class="sk-name">Python</div>
+          <div class="sk-pct">78%</div>
+        </div>
+        <div class="sk rv tilt" style="--w:60%;--offset:75.2;transition-delay:.54s">
+          <div class="sk-ring-wrap">
+            <svg viewBox="0 0 64 64">
+              <circle class="sk-ring-track" cx="32" cy="32" r="30" />
+              <circle class="sk-ring-fill" cx="32" cy="32" r="30" />
+            </svg>
+            <div class="sk-ring-icon"><img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow"
+                style="width:24px;height:24px;"></div>
+          </div>
+          <div class="sk-name">TensorFlow</div>
+          <div class="sk-pct">60%</div>
+        </div>
+        <div class="sk rv tilt" style="--w:55%;--offset:84.6;transition-delay:.60s">
+          <div class="sk-ring-wrap">
+            <svg viewBox="0 0 64 64">
+              <circle class="sk-ring-track" cx="32" cy="32" r="30" />
+              <circle class="sk-ring-fill" cx="32" cy="32" r="30" />
+            </svg>
+            <div class="sk-ring-icon"><img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="AWS"
+                style="width:24px;height:24px;"></div>
+          </div>
+          <div class="sk-name">AWS / Cloud</div>
+          <div class="sk-pct">55%</div>
+        </div>
       </div>
     </div>
   </section>
@@ -375,16 +425,26 @@
 
         <div class="tl-item rv">
           <div class="tl-dot"></div>
-          <div class="tl-date">2023 — Present</div>
+          <div class="tl-date">2026 — Present</div>
           <div class="tl-card tilt">
-            <div class="tl-title">B.Sc. Computer Science</div>
-            <div class="tl-sub">Bharathidasan University</div>
-            <div class="tl-desc">Successfully completed a B.Sc. Computer Science degree with focus on web technologies,
-              databases, and software development. Graduated in 2026.</div>
+            <div class="tl-title">MSc AI &amp; Data Science</div>
+            <div class="tl-sub">Alagappa University</div>
+            <div class="tl-desc">Currently pursuing MSc in Artificial Intelligence &amp; Data Science with focus on AI Engineering, MLOps, Cloud Computing, and intelligent system design.</div>
           </div>
         </div>
 
         <div class="tl-item rv" style="transition-delay:.1s">
+          <div class="tl-dot"></div>
+          <div class="tl-date">2023 — 2026</div>
+          <div class="tl-card tilt">
+            <div class="tl-title">B.Sc. Computer Science</div>
+            <div class="tl-sub">J.J College of Arts &amp; Science · Bharathidasan University</div>
+            <div class="tl-desc">Completed B.Sc. Computer Science with focus on web technologies,
+              databases, and software development. Graduated in 2026.</div>
+          </div>
+        </div>
+
+        <div class="tl-item rv" style="transition-delay:.2s">
           <div class="tl-dot"></div>
           <div class="tl-date">March–April 2024</div>
           <div class="tl-card tilt">
@@ -395,7 +455,7 @@
           </div>
         </div>
 
-        <div class="tl-item rv" style="transition-delay:.2s">
+        <div class="tl-item rv" style="transition-delay:.3s">
           <div class="tl-dot"></div>
           <div class="tl-date">May 2025</div>
           <div class="tl-card tilt">
@@ -406,7 +466,7 @@
           </div>
         </div>
 
-        <div class="tl-item rv" style="transition-delay:.3s">
+        <div class="tl-item rv" style="transition-delay:.4s">
           <div class="tl-dot"></div>
           <div class="tl-date">2025 — Ongoing</div>
           <div class="tl-card tilt">
@@ -417,7 +477,7 @@
           </div>
         </div>
 
-        <div class="tl-item rv" style="transition-delay:.4s">
+        <div class="tl-item rv" style="transition-delay:.5s">
           <div class="tl-dot"></div>
           <div class="tl-date">2026 — Ongoing</div>
           <div class="tl-card tilt">
@@ -425,6 +485,26 @@
             <div class="tl-sub">Self-initiated · Full Stack Build</div>
             <div class="tl-desc">Designing and developing a music streaming web application with browsing, playback, and
               discovery features — currently in active development.</div>
+          </div>
+        </div>
+
+        <div class="tl-item rv" style="transition-delay:.6s">
+          <div class="tl-dot"></div>
+          <div class="tl-date">2026 — Featured</div>
+          <div class="tl-card tilt">
+            <div class="tl-title">TN Bus Portals — Smart Transit Board</div>
+            <div class="tl-sub">Full Stack &amp; Real-Time Systems Engineering</div>
+            <div class="tl-desc">Architected a hardware-independent public transit synchronization platform across Tamil Nadu corridors with QR-based driver dispatch and live stop-by-stop passenger tracking.</div>
+          </div>
+        </div>
+
+        <div class="tl-item rv" style="transition-delay:.7s">
+          <div class="tl-dot"></div>
+          <div class="tl-date">2026 — Upcoming</div>
+          <div class="tl-card tilt">
+            <div class="tl-title">Tessa — Personal AI Agent</div>
+            <div class="tl-sub">Autonomous AI &amp; Holographic 3D HUD</div>
+            <div class="tl-desc">Designing an intelligent 3D holographic personal AI assistant featuring real-time speech, photorealistic 3D avatar interaction, and visionOS HUD console.</div>
           </div>
         </div>
 
@@ -701,6 +781,62 @@
           </div>
         </div>
 
+        <!-- TN Bus Portals -->
+        <div class="pc rv" style="transition-delay:.60s">
+          <div class="pc-thumb">
+            <img src="SECOND_GENERATED_IMAGE_4_3.jpg" alt="TN Bus Portals"
+              style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;z-index:0;opacity:0.65" />
+            <div class="pc-bg" style="background:linear-gradient(135deg,#04261a,#063327,#021b14);z-index:-1"></div>
+            <div class="pc-glow" style="background:radial-gradient(circle,rgba(16,185,129,.25),transparent 70%)"></div>
+            <div class="pc-icon">🚌</div>
+            <div class="pc-lbl" style="background:rgba(16,185,129,.14);border-color:rgba(16,185,129,.35);color:#10b981">Featured System</div>
+          </div>
+          <div class="pc-body">
+            <div class="pc-tags">
+              <span class="ptag" style="border-color:rgba(16,185,129,.3);color:#10b981;background:rgba(16,185,129,.08)">Transit Portal</span>
+              <span class="ptag">TypeScript</span>
+              <span class="ptag">Next.js</span>
+              <span class="ptag">Node.js / Express</span>
+              <span class="ptag">PostgreSQL</span>
+              <span class="ptag">Leaflet / OSM</span>
+              <span class="ptag">QR Dispatch</span>
+            </div>
+            <div class="pc-name">TN Bus Portals</div>
+            <div class="pc-desc">Hardware-independent, real-time public transit synchronization &amp; passenger dispatch platform across Tamil Nadu corridors. Features multi-corridor route chaining, driver QR trip verification, live stop-by-stop progression, and incident broadcasting without costly GPS hardware.</div>
+            <div class="pc-links">
+              <a href="https://tn-bus-track-passangerportal.vercel.app/" target="_blank" class="plink"
+                style="color:#10b981;border-color:rgba(16,185,129,.35);background:rgba(16,185,129,.1)">Live Passenger Portal ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tessa Personal AI Agent -->
+        <div class="pc rv" style="transition-delay:.72s">
+          <div class="pc-thumb">
+            <img src="tessa.png" alt="Tessa Personal AI Agent"
+              style="width:100%;height:100%;object-fit:cover;object-position:top center;position:absolute;inset:0;z-index:0;opacity:0.65" />
+            <div class="pc-bg" style="background:linear-gradient(135deg,#1f0a2e,#2a0845,#0b0c26);z-index:-1"></div>
+            <div class="pc-glow" style="background:radial-gradient(circle,rgba(168,85,247,.28),transparent 70%)"></div>
+            <div class="pc-icon">🤖</div>
+            <div class="pc-lbl" style="background:rgba(168,85,247,.16);border-color:rgba(168,85,247,.45);color:#c084fc;box-shadow:0 0 10px rgba(168,85,247,.25)">Upcoming Project</div>
+          </div>
+          <div class="pc-body">
+            <div class="pc-tags">
+              <span class="ptag" style="border-color:rgba(168,85,247,.35);color:#c084fc;background:rgba(168,85,247,.08)">Autonomous AI</span>
+              <span class="ptag">Python / FastAPI</span>
+              <span class="ptag">3D Avatar (GLB)</span>
+              <span class="ptag">Voice &amp; TTS</span>
+              <span class="ptag">VisionOS HUD</span>
+              <span class="ptag">Multimodal</span>
+            </div>
+            <div class="pc-name">Tessa — Personal AI Agent</div>
+            <div class="pc-desc">An intelligent 3D holographic personal AI assistant. Integrates real-time speech and multilingual voice synthesis, photorealistic 3D avatar interaction, visionOS-inspired holographic HUD console, and multimodal reasoning for autonomous tasks.</div>
+            <div class="pc-links">
+              <span class="plink" style="color:#c084fc;border-color:rgba(168,85,247,.3);background:rgba(168,85,247,.08);cursor:default">In Active Development 🚀</span>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -834,7 +970,7 @@
     const resumeFrame = document.getElementById('resumeFrame');
     document.getElementById('viewResumeBtn').addEventListener('click', () => {
       resumeModal.classList.add('open');
-      resumeFrame.src = 'Adithyaprabu_Resume_____.pdf';
+      resumeFrame.src = 'G. Adithyaprabu(Resume).pdf';
     });
     document.getElementById('resumeClose').addEventListener('click', () => {
       resumeModal.classList.remove('open');
@@ -842,6 +978,46 @@
     });
     resumeModal.addEventListener('click', e => {
       if (e.target === resumeModal) { resumeModal.classList.remove('open'); resumeFrame.src = ''; }
+    });
+
+    /* ── PROJECT IMAGE FULLSCREEN MODAL ── */
+    const projectModal = document.getElementById('projectModal');
+    const pmImage = document.getElementById('pmImage');
+    const pmCaption = document.getElementById('pmCaption');
+    const pmClose = document.getElementById('pmClose');
+
+    const openProjectModal = (imgSrc, title) => {
+      pmImage.src = imgSrc;
+      pmCaption.textContent = title || 'Project Preview';
+      projectModal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    };
+
+    const closeProjectModal = () => {
+      projectModal.classList.remove('open');
+      document.body.style.overflow = '';
+      setTimeout(() => { pmImage.src = ''; }, 300);
+    };
+
+    document.querySelectorAll('.pc-thumb').forEach(thumb => {
+      thumb.addEventListener('click', () => {
+        const img = thumb.querySelector('img');
+        if (!img) return;
+        const pc = thumb.closest('.pc');
+        const nameEl = pc ? pc.querySelector('.pc-name') : null;
+        const title = nameEl ? nameEl.textContent.trim() : (img.alt || 'Project Preview');
+        openProjectModal(img.src, title);
+      });
+    });
+
+    pmClose.addEventListener('click', closeProjectModal);
+    projectModal.addEventListener('click', e => {
+      if (e.target === projectModal) closeProjectModal();
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && projectModal.classList.contains('open')) {
+        closeProjectModal();
+      }
     });
 
     /* ── THEME TOGGLE ── */
@@ -913,7 +1089,7 @@
 
     /* ── MULTI-ROLE TYPEWRITER ── */
     function startRoleTyper() {
-      const roles = ['Full Stack Developer', 'Web Designer', 'PHP Developer', 'UI/UX Enthusiast'];
+      const roles = ['AI Engineer', 'MLOps Engineer', 'Cloud Computing', 'Full Stack Developer'];
       const el = document.getElementById('roleText');
       let ri = 0, ci = 0, deleting = false;
       const type = () => {
