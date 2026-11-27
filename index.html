@@ -113,7 +113,6 @@
       <a href="#contact" class="nav-hire">Hire Me</a>
     </div>
     <div style="display:flex;align-items:center;gap:8px">
-      <button class="theme-btn" id="themeBtn" title="Toggle theme">🌙</button>
       <button class="ham-btn" id="hamBtn" aria-label="Menu">
         <span></span><span></span><span></span>
       </button>
@@ -1023,11 +1022,13 @@
     /* ── THEME TOGGLE ── */
     const themeBtn = document.getElementById('themeBtn');
     let isDark = false;
-    themeBtn.addEventListener('click', () => {
-      isDark = !isDark;
-      document.body.classList.toggle('dark-mode', isDark);
-      themeBtn.textContent = isDark ? '☀️' : '🌙';
-    });
+    if (themeBtn) {
+      themeBtn.addEventListener('click', () => {
+        isDark = !isDark;
+        document.body.classList.toggle('dark-mode', isDark);
+        themeBtn.textContent = isDark ? '☀️' : '🌙';
+      });
+    }
 
     /* ── CURSOR ── */
     const cur = document.getElementById('cur'), curR = document.getElementById('curR');
