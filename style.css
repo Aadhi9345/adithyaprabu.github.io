@@ -193,9 +193,16 @@
     #bgCanvas {
       position: fixed;
       inset: 0;
+      width: 100vw;
+      height: 100vh;
       z-index: 0;
-      opacity: .28;
-      pointer-events: none
+      opacity: .75;
+      pointer-events: none;
+      transition: opacity .4s ease;
+    }
+
+    body.dark-mode #bgCanvas {
+      opacity: .95;
     }
 
     /* ─── SCROLL BAR ─────────────────────────── */
