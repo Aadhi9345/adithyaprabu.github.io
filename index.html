@@ -30,9 +30,6 @@
   <!-- SCROLL PROGRESS BAR -->
   <div id="scrollBar"></div>
 
-  <!-- BG CANVAS -->
-  <canvas id="bgCanvas"></canvas>
-
   <!-- ═══════════ PROJECT IMAGE FULLSCREEN MODAL ═══════════ -->
   <div class="project-modal" id="projectModal" aria-hidden="true">
     <div class="pm-wrapper">
@@ -1039,33 +1036,6 @@
       el.addEventListener('mouseenter', () => { cur.classList.add('h'); curR.classList.add('h') });
       el.addEventListener('mouseleave', () => { cur.classList.remove('h'); curR.classList.remove('h') });
     });
-
-    /* ── BG PARTICLES ── */
-    const cv = document.getElementById('bgCanvas'), ctx = cv.getContext('2d');
-    const rsz = () => { cv.width = window.innerWidth; cv.height = window.innerHeight }; rsz(); window.addEventListener('resize', rsz);
-    const pts = Array.from({ length: 65 }, () => ({
-      x: Math.random() * cv.width, y: Math.random() * cv.height,
-      r: Math.random() * 1.4 + .3, dx: (Math.random() - .5) * .28, dy: (Math.random() - .5) * .28, a: Math.random() * .8 + .2
-    }));
-    function ptColor() { return isDark ? 'rgba(0,212,255,' : 'rgba(0,102,255,'; }
-    (function dp() {
-      ctx.clearRect(0, 0, cv.width, cv.height);
-      pts.forEach(p => {
-        p.x += p.dx; p.y += p.dy;
-        if (p.x < 0) p.x = cv.width; if (p.x > cv.width) p.x = 0;
-        if (p.y < 0) p.y = cv.height; if (p.y > cv.height) p.y = 0;
-        ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `${ptColor()}${p.a * .45})`; ctx.fill();
-      });
-      for (let i = 0; i < pts.length; i++)for (let j = i + 1; j < pts.length; j++) {
-        const dx = pts[i].x - pts[j].x, dy = pts[i].y - pts[j].y, d = Math.sqrt(dx * dx + dy * dy);
-        if (d < 110) {
-          ctx.beginPath(); ctx.strokeStyle = `${ptColor()}${.04 * (1 - d / 110)})`;
-          ctx.lineWidth = .5; ctx.moveTo(pts[i].x, pts[i].y); ctx.lineTo(pts[j].x, pts[j].y); ctx.stroke()
-        }
-      }
-      requestAnimationFrame(dp);
-    })();
 
     /* ── SCROLL PROGRESS ── */
     const sb = document.getElementById('scrollBar');
