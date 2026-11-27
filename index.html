@@ -922,7 +922,7 @@
         rx.fillStyle = 'rgba(255,255,255,.55)'; rx.fillRect(0, 0, rc.width, rc.height);
         rx.font = '13px Courier New';
         drops.forEach((y, i) => {
-          rx.fillStyle = `rgba(0,102,255,${Math.random() * .3 + .1})`;
+          rx.fillStyle = `rgba(23,105,255,${Math.random() * .3 + .1})`;
           rx.fillText(chars[Math.floor(Math.random() * chars.length)], i * 18, y * 14);
           drops[i] = y > rc.height / 14 + Math.random() * 20 ? -5 : y + .5;
         });
@@ -1046,7 +1046,7 @@
       x: Math.random() * cv.width, y: Math.random() * cv.height,
       r: Math.random() * 1.4 + .3, dx: (Math.random() - .5) * .28, dy: (Math.random() - .5) * .28, a: Math.random() * .8 + .2
     }));
-    function ptColor() { return isDark ? 'rgba(0,212,255,' : 'rgba(0,102,255,'; }
+    function ptColor() { return isDark ? 'rgba(56,130,255,' : 'rgba(23,105,255,'; }
     (function dp() {
       ctx.clearRect(0, 0, cv.width, cv.height);
       pts.forEach(p => {
